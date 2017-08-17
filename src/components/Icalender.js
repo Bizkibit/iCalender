@@ -2,8 +2,6 @@ import React from 'react'
 import {Header} from './Header'
 import {Body} from './Body'
 
-let MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
 export class Icalender extends React.Component {
 
   render()  {
@@ -12,13 +10,14 @@ export class Icalender extends React.Component {
 
     let date = selectDate.getDate();
     let day = selectDate.getDay();
-    let month = MONTHS[selectDate.getMonth()];
+    let month = selectDate.getMonth();
     let year = selectDate.getFullYear();
+    let firstDay = new Date(year, month, 1)
 
     return (
       <div style={{ border: '15px black solid', width: '500px' }}>
         <Header month={month} year={year}/>
-        <Body date={date} day={day}/>
+        <Body date={date} day={day} firstDay={firstDay.getDay()}/>
       </div>
     )
   }
