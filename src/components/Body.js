@@ -10,21 +10,21 @@ export class Body extends React.Component {
 
   populateCalender() {
     let {firstDay} = this.props;
-    let kir = [];
+    let date = [];
     for (let i=-firstDay; i <=30; i++ ) {
-      let kos = i < 0 ? (<td key={i}></td>) : (<Date date={i+1} key={i}/>)
-      kir.push(kos)
+      let tabledDate = i < 0 ? (<td key={i}></td>) : (<Date date={i+1} key={i}/>)
+      date.push(tabledDate)
     }
-    return kir;
+    return date;
   }
 
   createRow() {
-    let kir = this.populateCalender();
-    let kun = [];
+    let date = this.populateCalender();
+    let rowArray = [];
     for(let i = 0; i <= 6; i++ ) {
-    	kun.push(<tr key={i}>{kir.slice(i*7, (i+1)*7)}</tr>);
+    	rowArray.push(<tr key={i}>{date.slice(i*7, (i+1)*7)}</tr>);
     }
-    return kun;
+    return rowArray;
   }
 
   render() {
