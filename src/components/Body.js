@@ -9,20 +9,33 @@ export class Body extends React.Component {
   }
 
   populateCalender() {
-    let {firstDay} = this.props;
-    let date = [];
+    let {firstDay, date} = this.props;
+    let dates = [];
+    let tabledDate;
     for (let i=-firstDay; i <=30; i++ ) {
-      let tabledDate = i < 0 ? (<td key={i}></td>) : (<Date date={i+1} key={i}/>)
-      date.push(tabledDate)
+      if (i<0) {
+        tabledDate = (<td key={i}></td>)
+      }
+      else if (i+1 < date) {
+        tabledDate = (<Date date={i+1} key={i} color='grey'/>)
+      }
+      else if (i+1 === date) {
+        tabledDate = (<Date date={i+1} key={i} color='red'/>)
+      }
+      else {
+        tabledDate = (<Date date={i+1} key={i} color='white'/>)
+      }
+      // tabledDate = i < 0 ? (<td key={i}></td>) : (<Date date={i+1} key={i} />)
+      dates.push(tabledDate)
     }
-    return date;
+    return dates;
   }
 
   createRow() {
-    let date = this.populateCalender();
+    let dates = this.populateCalender();
     let rowArray = [];
     for(let i = 0; i <= 6; i++ ) {
-    	rowArray.push(<tr key={i}>{date.slice(i*7, (i+1)*7)}</tr>);
+    	rowArray.push(<tr key={i}>{dates.slice(i*7, (i+1)*7)}</tr>);
     }
     return rowArray;
   }
@@ -31,7 +44,6 @@ export class Body extends React.Component {
     let style={ backgroundColor: '#1a5daf',
                 color: 'skyblue',
                 width: '500px',
-                height: '500px'
                 }
     return (
       <div style={style}>

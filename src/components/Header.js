@@ -6,6 +6,7 @@ export class Header extends React.Component {
   render()  {
     let style={backgroundColor: 'skyblue',
           display: 'flex',
+          justifyContent: `space-around`,
           alignItems: 'center',
           width: '500px',
           color: 'white'
