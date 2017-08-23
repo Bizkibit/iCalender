@@ -4,8 +4,21 @@ import {Date} from './Date'
 export class Body extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      currentDay: ''
+    }
+
     this.populateCalender = this.populateCalender.bind(this);
     this.createRow = this.createRow.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({currentDay: this.props.selectDate})
+  }
+
+  populateCalender2() {
+    let dates = [];
+
   }
 
   populateCalender() {
