@@ -1,44 +1,28 @@
 import React from 'react'
-import {Date} from './Date'
+import {Date2} from './Date2'
 
 export class Body extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      currentDay: ''
-    }
-
     this.populateCalender = this.populateCalender.bind(this);
     this.createRow = this.createRow.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({currentDay: this.props.selectDate})
-  }
-
-  populateCalender2() {
-    let dates = [];
-
-  }
-
   populateCalender() {
-    let {firstDay, date} = this.props;
+    let {selectDate} = this.props;
+    let month = selectDate.getMonth();
+    let year = selectDate.getFullYear();
+    let firstDay = new Date(year, month, 1)
+    let lastDay = new Date(year, month+1, 0)
     let dates = [];
     let tabledDate;
-    for (let i=-firstDay; i <=30; i++ ) {
+    for (let i = -firstDay.getDay(); i < lastDay.getDate(); i++)  {
       if (i<0) {
         tabledDate = (<td key={i}></td>)
       }
-      else if (i+1 < date) {
-        tabledDate = (<Date date={i+1} key={i} color='grey'/>)
-      }
-      else if (i+1 === date) {
-        tabledDate = (<Date date={i+1} key={i} color='red'/>)
-      }
       else {
-        tabledDate = (<Date date={i+1} key={i} color='white'/>)
+        tabledDate = (<Date2 key={i} date={new Date(firstDay.getFullYear(), firstDay.getMonth(), 1+i)}/>)
       }
-      // tabledDate = i < 0 ? (<td key={i}></td>) : (<Date date={i+1} key={i} />)
       dates.push(tabledDate)
     }
     return dates;

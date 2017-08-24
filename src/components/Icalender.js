@@ -12,28 +12,25 @@ export class Icalender extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({selectDate: new Date()});
+    this.setState({
+      selectDate: new Date()
+    });
   }
 
   handleMonthChange(i) {
     let {selectDate} = this.state;
     this.setState({
-      selectDate: new Date(selectDate.getFullYear(), selectDate.getMonth(), selectDate.getDate()+30*i)
+      selectDate: new Date(selectDate.getFullYear(), selectDate.getMonth()+i, selectDate.getDate()),
     })
   }
 
   render()  {
     let {selectDate} = this.state;
-    let date = selectDate.getDate();
-    let day = selectDate.getDay();
-    let month = selectDate.getMonth();
-    let year = selectDate.getFullYear();
-    let firstDay = new Date(year, month, 1)
 
     return (
       <div style={{ border: '15px black solid', width: '500px' }}>
-        <Header month={month} year={year} onClick={this.handleMonthChange}/>
-        <Body date={date} day={day} selecDate={selectDate} firstDay={firstDay.getDay()}/>
+        <Header month={selectDate.getMonth()} year={selectDate.getFullYear()} onClick={this.handleMonthChange}/>
+        <Body selectDate={selectDate}/>
       </div>
     )
   }
