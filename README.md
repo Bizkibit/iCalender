@@ -1,4 +1,4 @@
 ICalender
 -------------
-Simple Calender Component, created in ReactJS.
+Simple Calendar Component, created in ReactJS.
 After Cloning, run ```yarn start```.
